@@ -1,16 +1,16 @@
 Loan Approval Prediction System (ML + FastAPI)
 
-This project is an end-to-end Machine Learning system for predicting loan approval status. It follows industry-standard structure and practices, including data validation, feature engineering, model training, inference, and a production-ready API using FastAPI.
+An end-to-end Machine Learning system for predicting loan approval status. This project follows industry-standard ML engineering practices, including data validation, feature engineering, model training, inference, and a production-ready REST API using FastAPI.
 
 ⸻
 
 🚀 Features
-	•	Clean project structure (train vs inference separation)
+	•	Clean and scalable project structure (training vs inference separation)
 	•	Proper data validation & feature engineering pipeline
-	•	Trained ML model (XGBoost compatible)
+	•	Trained ML model (XGBoost-compatible)
 	•	Robust handling of missing values
 	•	FastAPI-based REST API (POST /predict)
-	•	Swagger UI for easy testing
+	•	Swagger UI for easy testing and experimentation
 
 ⸻
 
@@ -19,24 +19,24 @@ This project is an end-to-end Machine Learning system for predicting loan approv
 loan-approval-ml/
 │
 ├── data/
-│   ├── raw/                # Original Kaggle CSV
-│   └── processed/          # Cleaned data
+│   ├── raw/                # Original Kaggle CSV (never modified)
+│   └── processed/          # Cleaned and validated dataset
 │
 ├── src/
-│   ├── data_validation.py  # Dataset-level cleaning & checks
-│   ├── feature_engineering.py # Encoding, imputers, scaling
-│   ├── train.py            # Model training & saving artifacts
-│   └── predict.py          # Inference logic (used by API)
+│   ├── data_validation.py      # Dataset-level cleaning & checks
+│   ├── feature_engineering.py  # Encoding, imputers, scaling
+│   ├── train.py                # Model training & artifact saving
+│   └── predict.py              # Inference logic (reused by API)
 │
 ├── models/
-│   ├── model.pkl           # Trained ML model
-│   ├── one_hot_encoder.pkl 
+│   ├── model.pkl               # Trained ML model
+│   ├── one_hot_encoder.pkl     # Saved encoder
 │
 ├── api/
-│   └── main.py             # FastAPI application
+│   └── main.py                 # FastAPI application
 │
 ├── notebooks/
-│   └── eda.ipynb           # Exploratory Data Analysis
+│   └── eda.ipynb               # Exploratory Data Analysis
 │
 ├── requirements.txt
 ├── README.md
@@ -44,14 +44,15 @@ loan-approval-ml/
 
 ⸻
 
-📊 Dataset (https://www.kaggle.com/competitions/playground-series-s4e10/data?select=train.csv)
+📊 Dataset
 	•	Source: Kaggle Loan Prediction Dataset
+https://www.kaggle.com/competitions/playground-series-s4e10/data?select=train.csv
 	•	Rows: 614
-	•	Target column: Loan_Status (Approved / Rejected)
+	•	Target Column: Loan_Status (Approved / Rejected)
 
-Important:
+Important Notes
 	•	Raw data is never modified
-	•	Cleaned data is stored in data/processed/
+	•	Cleaned and validated data is stored in data/processed/
 
 ⸻
 
@@ -67,7 +68,7 @@ Feature Engineering + Imputation + Scaling
    ↓
 Train Model
    ↓
-Save Artifacts (model, scaler, imputers)
+Save Artifacts (model, encoders, imputers)
    ↓
 Prediction (predict.py)
    ↓
@@ -100,17 +101,17 @@ This will generate:
 
 ⸻
 
-🔍 Test Prediction Locally (No API)
+🔍 Test Prediction Locally (Without API)
 
 python src/predict.py
 
-This uses the __main__ block inside predict.py with a sample input.
+This uses the __main__ block inside predict.py with a sample input to verify inference logic.
 
 ⸻
 
 🌐 Run the API
 
-create __init__.py file in src folder
+Important: Create an empty __init__.py file inside the src/ folder before running the API.
 
 uvicorn api.main:app --reload
 
@@ -155,9 +156,9 @@ Sample Response
 
 🔐 Design Principles Followed
 	•	Separation of concerns (validation vs features vs inference)
-	•	No data leakage (fit only on train data)
-	•	Reusable prediction logic (predict.py)
-	•	API contains no ML logic
+	•	No data leakage (fit only on training data)
+	•	Reusable and testable prediction logic (predict.py)
+	•	API contains no ML logic, only orchestration
 
 ⸻
 
