@@ -1,31 +1,57 @@
-Loan Approval Prediction System (ML + FastAPI)
+# 🏦 Loan Approval Prediction System (ML + FastAPI)
 
-An end-to-end Machine Learning system for predicting loan approval status. This project follows industry-standard ML engineering practices, including data validation, feature engineering, model training, inference, and a production-ready REST API using FastAPI.
+![Python](https://img.shields.io/badge/Python-3.9+-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-API-green)
+![ML](https://img.shields.io/badge/Machine%20Learning-Production--Ready-orange)
+![Status](https://img.shields.io/badge/Status-Active-success)
 
-⸻
+An **end-to-end Machine Learning project** for predicting loan approval status.
+Designed following **industry-grade ML engineering practices** with a clean pipeline, reusable inference logic, and a **production-ready FastAPI service**.
 
-🚀 Features
-	•	Clean and scalable project structure (training vs inference separation)
-	•	Proper data validation & feature engineering pipeline
-	•	Trained ML model (XGBoost-compatible)
-	•	Robust handling of missing values
-	•	FastAPI-based REST API (POST /predict)
-	•	Swagger UI for easy testing and experimentation
+---
 
-⸻
+## 📑 Table of Contents
 
-📁 Project Structure
+* [Features](#-features)
+* [Project Structure](#-project-structure)
+* [Dataset](#-dataset)
+* [ML Pipeline](#-ml-pipeline)
+* [How to Run](#-how-to-run-the-project)
+* [Train the Model](#-train-the-model)
+* [Run the API](#-run-the-api)
+* [API Testing](#-test-the-api-swagger-ui)
+* [Design Principles](#-design-principles-followed)
+* [Tech Stack](#-tech-stack)
+* [Future Improvements](#-future-improvements)
+* [Author](#-author)
 
+---
+
+## 🚀 Features
+
+* ✅ Clean and scalable project structure
+* ✅ Separation of training and inference logic
+* ✅ Proper data validation & feature engineering
+* ✅ Missing value handling (robust & consistent)
+* ✅ Trained ML model (XGBoost compatible)
+* ✅ REST API using FastAPI (`POST /predict`)
+* ✅ Interactive Swagger UI for testing
+
+---
+
+## 📁 Project Structure
+
+```text
 loan-approval-ml/
 │
 ├── data/
 │   ├── raw/                # Original Kaggle CSV (never modified)
-│   └── processed/          # Cleaned and validated dataset
+│   └── processed/          # Cleaned & validated data
 │
 ├── src/
-│   ├── data_validation.py      # Dataset-level cleaning & checks
+│   ├── data_validation.py      # Dataset-level checks & cleaning
 │   ├── feature_engineering.py  # Encoding, imputers, scaling
-│   ├── train.py                # Model training & artifact saving
+│   ├── train.py                # Model training & saving artifacts
 │   └── predict.py              # Inference logic (reused by API)
 │
 ├── models/
@@ -40,96 +66,115 @@ loan-approval-ml/
 │
 ├── requirements.txt
 ├── README.md
+```
 
+---
 
-⸻
+## 📊 Dataset
 
-📊 Dataset
-	•	Source: Kaggle Loan Prediction Dataset
-https://www.kaggle.com/competitions/playground-series-s4e10/data?select=train.csv
-	•	Rows: 614
-	•	Target Column: Loan_Status (Approved / Rejected)
+* **Source:** Kaggle Loan Prediction Dataset
+  [https://www.kaggle.com/competitions/playground-series-s4e10/data?select=train.csv](https://www.kaggle.com/competitions/playground-series-s4e10/data?select=train.csv)
+* **Rows:** 614
+* **Target Column:** `Loan_Status` (Approved / Rejected)
 
-Important Notes
-	•	Raw data is never modified
-	•	Cleaned and validated data is stored in data/processed/
+### 🔒 Data Handling Rules
 
-⸻
+* Raw data is **never modified**
+* Cleaned data is saved in `data/processed/`
+* No information leakage from test to train
 
-🔄 ML Pipeline Flow
+---
 
+## 🔄 ML Pipeline
+
+```text
 Raw Data
    ↓
 Data Validation
    ↓
 Cleaned Data
    ↓
-Feature Engineering + Imputation + Scaling
+Feature Engineering
+(Imputation + Encoding + Scaling)
    ↓
-Train Model
+Model Training
    ↓
-Save Artifacts (model, encoders, imputers)
+Save Artifacts
    ↓
-Prediction (predict.py)
+Prediction Logic (predict.py)
    ↓
-API (FastAPI)
+FastAPI Service
+```
 
+---
 
-⸻
+## 🧪 How to Run the Project
 
-🧪 How to Run the Project
+### 1️⃣ Clone the Repository
 
-1️⃣ Clone & Setup
-
+```bash
 git clone <your-repo-url>
 cd loan-approval-ml
+```
 
-2️⃣ Install Dependencies
+### 2️⃣ Install Dependencies
 
+```bash
 pip install -r requirements.txt
+```
 
+---
 
-⸻
+## 🏋️ Train the Model
 
-🏋️ Train the Model
-
+```bash
 python src/train.py
+```
 
-This will generate:
-	•	models/model.pkl
-	•	models/one_hot_encoder.pkl
+### 📦 Generated Artifacts
 
-⸻
+* `models/model.pkl`
+* `models/one_hot_encoder.pkl`
 
-🔍 Test Prediction Locally (Without API)
+---
 
+## 🔍 Test Prediction Locally (Without API)
+
+```bash
 python src/predict.py
+```
 
-This uses the __main__ block inside predict.py with a sample input to verify inference logic.
+Uses the `__main__` block with a sample input for quick testing.
 
-⸻
+---
 
-🌐 Run the API
+## 🌐 Run the API
 
-Important: Create an empty __init__.py file inside the src/ folder before running the API.
+> ⚠️ **Important:** Create an empty `__init__.py` file inside the `src/` directory.
 
+```bash
 uvicorn api.main:app --reload
+```
 
 API will be available at:
 
+```
 http://127.0.0.1:8000
+```
 
+---
 
-⸻
-
-🧪 Test the API (Swagger UI)
+## 🧪 Test the API (Swagger UI)
 
 Open in browser:
 
+```
 http://127.0.0.1:8000/docs
+```
 
-Sample Request
+### 📥 Sample Request
 
+```json
 {
   "Gender": "Male",
   "Married": "Yes",
@@ -143,44 +188,49 @@ Sample Request
   "Credit_History": 1,
   "Property_Area": "Urban"
 }
+```
 
-Sample Response
+### 📤 Sample Response
 
+```json
 {
   "loan_status": "Approved",
   "confidence": 0.87
 }
+```
 
+---
 
-⸻
+## 🔐 Design Principles Followed
 
-🔐 Design Principles Followed
-	•	Separation of concerns (validation vs features vs inference)
-	•	No data leakage (fit only on training data)
-	•	Reusable and testable prediction logic (predict.py)
-	•	API contains no ML logic, only orchestration
+* Separation of concerns (data, features, inference, API)
+* No data leakage (fit only on training data)
+* Reusable & testable prediction logic
+* API layer contains **zero ML logic**
 
-⸻
+---
 
-🛠 Tech Stack
-	•	Python
-	•	Pandas, NumPy
-	•	Scikit-learn / XGBoost
-	•	FastAPI
-	•	Uvicorn
+## 🛠 Tech Stack
 
-⸻
+* **Language:** Python
+* **Data:** Pandas, NumPy
+* **ML:** Scikit-learn, XGBoost
+* **API:** FastAPI
+* **Server:** Uvicorn
 
-📌 Future Improvements
-	•	Dockerize the application
-	•	Add /health endpoint
-	•	Logging & monitoring
-	•	Model explainability (SHAP)
-	•	CI/CD pipeline
+---
 
-⸻
+## 📌 Future Improvements
 
-👨‍🎓 Author
+* Dockerize the application
+* Add `/health` endpoint
+* Centralized logging & monitoring
+* Model explainability using SHAP
+* CI/CD pipeline integration
 
-Amit Roy Antu
+---
+
+## 👨‍🎓 Author
+
+**Amit Roy Antu**
 University Student | ML & Backend Enthusiast
