@@ -227,10 +227,3 @@ http://127.0.0.1:8000/docs
 * Centralized logging & monitoring
 * Model explainability using SHAP
 * CI/CD pipeline integration
-
----
-
-## 👨‍🎓 Author
-
-**Amit Roy Antu**
-University Student | ML & Backend Enthusiast
