@@ -1,4 +1,4 @@
-# 🏦 Loan Approval Prediction System (ML + FastAPI)
+# Loan Approval Prediction System (ML + FastAPI)
 
 ![Python](https://img.shields.io/badge/Python-3.9+-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-API-green)
@@ -10,7 +10,7 @@ Designed following **industry-grade ML engineering practices** with a clean pipe
 
 ---
 
-## 📑 Table of Contents
+## Table of Contents
 
 * [Features](#-features)
 * [Project Structure](#-project-structure)
@@ -27,19 +27,19 @@ Designed following **industry-grade ML engineering practices** with a clean pipe
 
 ---
 
-## 🚀 Features
+## Features
 
-* ✅ Clean and scalable project structure
-* ✅ Separation of training and inference logic
-* ✅ Proper data validation & feature engineering
-* ✅ Missing value handling (robust & consistent)
-* ✅ Trained ML model (XGBoost compatible)
-* ✅ REST API using FastAPI (`POST /predict`)
-* ✅ Interactive Swagger UI for testing
+* Clean and scalable project structure
+* Separation of training and inference logic
+* Proper data validation & feature engineering
+* Missing value handling (robust & consistent)
+* Trained ML model (XGBoost compatible)
+* REST API using FastAPI (`POST /predict`)
+* Interactive Swagger UI for testing
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```text
 loan-approval-ml/
@@ -70,14 +70,14 @@ loan-approval-ml/
 
 ---
 
-## 📊 Dataset
+## Dataset
 
 * **Source:** Kaggle Loan Prediction Dataset
   [https://www.kaggle.com/competitions/playground-series-s4e10/data?select=train.csv](https://www.kaggle.com/competitions/playground-series-s4e10/data?select=train.csv)
 * **Rows:** 614
 * **Target Column:** `Loan_Status` (Approved / Rejected)
 
-### 🔒 Data Handling Rules
+### Data Handling Rules
 
 * Raw data is **never modified**
 * Cleaned data is saved in `data/processed/`
@@ -85,7 +85,7 @@ loan-approval-ml/
 
 ---
 
-## 🔄 ML Pipeline
+## ML Pipeline
 
 ```text
 Raw Data
@@ -108,16 +108,16 @@ FastAPI Service
 
 ---
 
-## 🧪 How to Run the Project
+## How to Run the Project
 
-### 1️⃣ Clone the Repository
+### Clone the Repository
 
 ```bash
 git clone <your-repo-url>
 cd loan-approval-ml
 ```
 
-### 2️⃣ Install Dependencies
+### Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -125,20 +125,20 @@ pip install -r requirements.txt
 
 ---
 
-## 🏋️ Train the Model
+## Train the Model
 
 ```bash
 python src/train.py
 ```
 
-### 📦 Generated Artifacts
+### Generated Artifacts
 
 * `models/model.pkl`
 * `models/one_hot_encoder.pkl`
 
 ---
 
-## 🔍 Test Prediction Locally (Without API)
+## Test Prediction Locally (Without API)
 
 ```bash
 python src/predict.py
@@ -148,9 +148,9 @@ Uses the `__main__` block with a sample input for quick testing.
 
 ---
 
-## 🌐 Run the API
+## Run the API
 
-> ⚠️ **Important:** Create an empty `__init__.py` file inside the `src/` directory.
+> **Important:** Create an empty `__init__.py` file inside the `src/` directory.
 
 ```bash
 uvicorn api.main:app --reload
@@ -164,7 +164,7 @@ http://127.0.0.1:8000
 
 ---
 
-## 🧪 Test the API (Swagger UI)
+## Test the API (Swagger UI)
 
 Open in browser:
 
@@ -172,7 +172,7 @@ Open in browser:
 http://127.0.0.1:8000/docs
 ```
 
-### 📥 Sample Request
+### Sample Request
 
 ```json
 {
@@ -190,7 +190,7 @@ http://127.0.0.1:8000/docs
 }
 ```
 
-### 📤 Sample Response
+### Sample Response
 
 ```json
 {
@@ -201,7 +201,7 @@ http://127.0.0.1:8000/docs
 
 ---
 
-## 🔐 Design Principles Followed
+## Design Principles Followed
 
 * Separation of concerns (data, features, inference, API)
 * No data leakage (fit only on training data)
@@ -210,7 +210,7 @@ http://127.0.0.1:8000/docs
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 * **Language:** Python
 * **Data:** Pandas, NumPy
@@ -220,7 +220,7 @@ http://127.0.0.1:8000/docs
 
 ---
 
-## 📌 Future Improvements
+## Future Improvements
 
 * Dockerize the application
 * Add `/health` endpoint
